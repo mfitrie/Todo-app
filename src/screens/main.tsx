@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Text,
     Box,
     Center,
     VStack,
-    themeTools,
-    useTheme,
     useColorMode,
     useColorModeValue,
 } from 'native-base';
+import Checkbox from "expo-checkbox";
 import ThemeToggle from "../components/theme-toggle";
 
 export default function MainScreen(){
-    const { colorMode } = useColorMode();
+    const [isChecked, setChecked] = useState(false);
+
     return (
         <Center 
             _dark={{bg: 'blueGray.900'}} 
@@ -21,7 +21,12 @@ export default function MainScreen(){
             flex={1}
         >
             <VStack space={5} alignItems="center">
-                <Box>
+                <Checkbox
+                    value={isChecked}
+                    onValueChange={setChecked}
+                    color={isChecked ? '#4630EB' : undefined}
+                />
+                <Box p={10} bg={useColorModeValue("red.500", "yellow.500")}>
                     <Text>Hello</Text>
                 </Box>
                 <ThemeToggle/>
