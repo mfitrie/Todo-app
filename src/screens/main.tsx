@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
     Text,
     Box,
@@ -8,10 +8,15 @@ import {
     useColorModeValue,
 } from 'native-base';
 import Checkbox from "expo-checkbox";
+
 import ThemeToggle from "../components/theme-toggle";
+import TaskItem from "../components/task-item";
 
 export default function MainScreen(){
     const [isChecked, setChecked] = useState(false);
+    const handlePressCheckbox = useCallback(() => {
+        setChecked(prev => !prev);
+    }, []);
 
     return (
         <Center 
@@ -21,11 +26,9 @@ export default function MainScreen(){
             flex={1}
         >
             <VStack space={5} alignItems="center">
-                <Checkbox
-                    value={isChecked}
-                    onValueChange={setChecked}
-                    color={isChecked ? '#4630EB' : undefined}
-                />
+                <Box w="100px" h="100px">
+                    <TaskItem isDone={isChecked} onToggleCheckbox={handlePressCheckbox}/>
+                </Box>
                 <Box p={10} bg={useColorModeValue("red.500", "yellow.500")}>
                     <Text>Hello</Text>
                 </Box>
