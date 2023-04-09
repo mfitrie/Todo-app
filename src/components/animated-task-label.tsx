@@ -79,7 +79,7 @@ const AnimatedTaskLabel = memo((props: Props) => {
 
 
     return (
-        <Pressable>
+        <Pressable onPress={onPress}>
             <AnimatedHStack alignItems="center" style={[hstackAnimatedStyles]}>
                 <AnimatedText 
                     fontSize={19} 
@@ -89,7 +89,12 @@ const AnimatedTaskLabel = memo((props: Props) => {
                 >
                     { children }
                 </AnimatedText>
-                <AnimatedBox position="absolute" h={1} borderBottomWidth={1} style={[strikethroughAnimatedStyles]}/>
+                <AnimatedBox 
+                    position="absolute" 
+                    h={1} 
+                    borderBottomWidth={1} 
+                    style={[strikethroughAnimatedStyles]}
+                />
             </AnimatedHStack>
         </Pressable>
     )
